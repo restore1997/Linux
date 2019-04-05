@@ -1,6 +1,5 @@
 # fastq处理笔记
 
-```{shell}
 less -S SRR1039510_1.fastq #单行查看SRR1039510_1.fastq文件
 less -S SRR1039510_1.fastq|paste - - -|cut -f 1|wc #统计文件中一共有多少条序列信息
 less -S SRR1039510_1.fastq|grep ^@ |wc #统计文件中一共有多少条序列信息
@@ -14,4 +13,3 @@ less SRR1039510_1.fastq|paste - - - -|cut -f 2 |awk '{sum+=length($0)} END {prin
 less -S SRR1039510_1.fastq|paste - - - - |cut -f 2|grep -o ^[ATCGN]|sort|uniq -c # 统计reads_1.fq 中所有序列的第一位碱基的ATCGN分布情况(ATCGN分别个数)(uniq)
 less -S SRR1039510_1.fasta|awk '{if($0~/^>/)print $0;else print substr($0,6,length($0)-10)}'|less -S #删除SRR1039510_1.fasta文件每条序列的前后五个碱基
 less -S reads_1.fq|paste - - - -|cut -f1,2|tr "\t" "\n"|tr "@" ">" >read_1.fa # 将reads_1.fq 转为reads_1.fa文件(即将fastq转化为fasta)(tr)
-```
